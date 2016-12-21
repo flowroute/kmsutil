@@ -14,7 +14,7 @@ go install
 Alternately, you can get binary releases from Releases page on GitHub.
 
 ```sh
-curl -O ksmutil http://github.com/flowroute/kmsutil/release/xxx/kmsutil_amd64_linux
+curl -O ksmutil https://github.com/flowroute/kmsutil/releases/download/0.0.1/kmsutil_linux_amd64
 ```
 
 ## Usage
