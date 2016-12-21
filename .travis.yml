@@ -1,0 +1,22 @@
+language: go
+go: 1.7
+cache:
+  directories:
+  - vendor
+install:
+- go get -u github.com/kardianos/govendor
+- govendor sync
+script:
+- govendor vet +local
+- govendor test +local
+before_deploy:
+- GOOS=linux GOARCH=amd64 go build -o kmsutil_linux_amd64 --ldflags '-w -s'
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: hGZrsa7ag6IITrc9qrxS3T46HUgt7OKBtQkDjaMZLYR4QgDeaLfq2wkPzdhezKYxpxIxXKNERhkeonBfUn1/f6YSQTrZJT55mUsPwCi8q4H54kf6kwxWoEgRS31/BUUbqaGnf3f+C4o1USnpo2s+kYW90/sZU1x0scosDJihcli9HUUsfZPttpjAJ97iHI7v1Hy03xRkKEaT+ECK9OvSSF9CTesk5dzbNWXcMOH7ExxcS2Ivci/Fghw3j18omGMxAfVuGIjjynAKwsT6aTouIjNhwd7ZI2swgQMqztKNHLezryITw11HMovyd36PAtZMPSxLBp8qjDalFVmMTn2kbrQpS+PaDSVAkdiw8vANiR2C4B0n4c8OstDFLXFt9V2uVEJRNWI9RkQK3r288BGjoJmO3j/L3UTVO9thjvt3r4oEUmNfZVgzU/mcBcaLbeDg0e2iZd68hClYshd3tjn/HSMD2ZfsHrnQqc0dJNKaert5E4wwzG9N3ROefMt96fwENObI7801AByYfShF/cx6u9xh2UuPOo8qcBhNi6kTio8tvrJJJKPyabiCDKMb2gpcTMYZEUVZ2WYdfsMDpPpnkmSnEgqg0y/l/fGGkGHTI9EnJLC+O2cV1itocMY5QXQ7ZcVUQT46o8xYEuA5lNngZSSfrtNqOliJO9Vz4GMyh90=
+  file: kmsutil_linux_amd64
+  on:
+    tags: true
+    repo: flowroute/kmsutil
