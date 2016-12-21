@@ -10,7 +10,7 @@ script:
 - govendor vet +local
 - govendor test +local
 before_deploy:
-- GOOS=linux GOARCH=amd64 go build -o kmsutil_linux_amd64 --ldflags '-w -s'
+- GOOS=linux GOARCH=amd64 go build -o kmsutil_linux_amd64 --ldflags '-w -s -extldflags "-static"'
 deploy:
   skip_cleanup: true
   provider: releases
