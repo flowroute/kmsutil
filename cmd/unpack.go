@@ -50,7 +50,7 @@ profile must have the appropriate IAM rights to use the KMS key.
 		path = args[0]
 
 		// Don't need a KeyID to decrypt (it's in the file).
-		s, err := stash.NewStash("", region)
+		s, err := stash.NewStash("", region, profile)
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)

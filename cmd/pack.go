@@ -53,7 +53,7 @@ The box file may only be unpacked using credentials from the same AWS region.
 		}
 		keyId = args[0]
 		path = args[1]
-		s, err := stash.NewStash(keyId, region)
+		s, err := stash.NewStash(keyId, region, profile)
 		if err != nil {
 			panic(err)
 		}

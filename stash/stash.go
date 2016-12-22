@@ -55,14 +55,18 @@ type Stash struct {
 	noncer Noncer
 }
 
-func NewStash(key string, region string) (*Stash, error) {
+func NewStash(key string, region string, profile string) (*Stash, error) {
 	s := &Stash{}
+	opts := session.Options{
+		Profile: profile,
+		Config: aws.Config{Region: aws.String(region)},
+	}
 
-	creds, err := session.NewSession()
+	creds, err := session.NewSessionWithOptions(opts)
 	if err != nil {
 		return nil, err
 	}
-	s.kc = kms.New(creds, &aws.Config{Region: aws.String(region)})
+	s.kc = kms.New(creds)
 	s.keyId = key
 	s.noncer = RandomNoncer{}
 

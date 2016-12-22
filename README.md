@@ -5,6 +5,10 @@ kmsutil exists to make encrypting and decrypting local files with an
 
 ## Install
 
+Assuming you have a [working Go environment](https://golang.org/doc/install)
+and have installed [govendor](https://github.com/kardianos/govendor),
+installation is as easy as:
+
 ```sh
 go get github.com/flowroute/kmsutil
 govendor sync
